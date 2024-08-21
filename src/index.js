@@ -21,7 +21,7 @@ router.get('/list', async () => {
     // 生成表格行，每行显示每个键的所有字段信息
     const rows = keys.keys.map(key => `
       <tr>
-        <td><a href="/${key.name}">${key.name}</a></td>
+        <td><a href="/${key.name}">${decodeURIComponent(key.name)}</a></td>
         <td>${key.metadata ? (() => {
             const date = new Date(key.metadata.updateAt * 1000);
             const pad = num => num.toString().padStart(2, '0');
@@ -29,7 +29,7 @@ router.get('/list', async () => {
         })() : 'N/A'}
         </td>
       </tr>
-    `).join('<br>')
+    `).filter(e=>{return e.indexOf('NaN-NaN-NaN')===-1}).join('<br>')
 
     // 生成包含表格的HTML
     const html = `
