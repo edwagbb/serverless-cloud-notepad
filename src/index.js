@@ -29,7 +29,7 @@ router.get('/list', async () => {
         })() : 'N/A'}
         </td>
       </tr>
-    `).filter(e=>{return e.indexOf('NaN-NaN-NaN')===-1}).join('<br>')
+    `).filter(e=>{return e.indexOf('NaN-NaN-NaN')===-1}).join('')
 
     // 生成包含表格的HTML
     const html = `
@@ -61,7 +61,7 @@ router.get('/list', async () => {
       </html>`
 
     return new Response(html, {
-        headers: { 'Content-Type': 'text/html' },
+        headers: { 'Content-Type': 'text/html; charset=utf-8' },
     })
 })
 
